@@ -1,13 +1,78 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* .header {
+  border: 1px solid black;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-links > ul {
+  display: flex;
+}
+.nav-links > ul > li {
+  margin: 5px;
+  list-style-type: none;
+}
+.cart {
+  border: 1px solid red;
+  width: 200px;
+  padding: 10px;
+  margin: 5px;
+}
+.cart-detail > img {
+  height: 200px;
+  width: 200px;
+}
+.cart > img {
+  width: 100%;
+}
+.resturent-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.shimmer-card {
+  height: 200px;
+  width: 200px;
+  background-color: lightgrey;
+  margin: 20px;
+}
+.Resturent-card {
+  border: 2px solid blue;
+  margin-top: 30px;
+  display: flex;
+  height: 250px;
+  width: 100%;
+  background-color: rgb(233, 205, 188);
+}
+.Resturent-detail {
+  margin-left: 100px;
+}
+.Resturent-card > img {
+  width: 230px;
+  height: 230px;
+  padding: 10px;
+}
+.resturent-title {
+  color: red;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.resturent-list-a {
+  border: 1px solid black;
+  width: 450px;
+  height: 150px;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
 }
+.resturent-list > img {
+  width: 120px;
+  height: 120px;
+}
+.resturent-menu {
+  margin-left: 30px;
+  justify-content: left;
+  line-height: 15px;
+} */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
