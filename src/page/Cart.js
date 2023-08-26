@@ -1,19 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../redux/cartSlice";
-import { addItem, removeItem } from "../redux/cartSlice";
+import { addItem, removeItem } from "../redux/CartSlice";
 
 const Cart = () => {
-  const cartItem = useSelector((store) => store.cart.items);
+  const cartItem = useSelector((store) => store.cart.cartItems);
   const dispatch = useDispatch();
-  const addFoodItem = (cart) => {
-    dispatch(addItem(cart));
+  const addFoodItem = (ele) => {
+    dispatch(addItem(ele));
   };
 
-  const removeFoodItem = (cart) => {
-    dispatch(removeItem(cart));
+  const removeFoodItem = (ele) => {
+    dispatch(removeItem(ele));
   };
-  return (
+  return Object.keys(cartItem).length > 0 ? (
     <div>
       <div className="shadow-2xl mt-8 float-left w-[640px] ml-2  h-[1000px] ">
         <div className="flex ">
@@ -42,32 +41,43 @@ const Cart = () => {
         </div>
       </div>
       <div className="shadow-2xl mt-8 float-right w-[480px] h-[1500px] mr-8">
-        {cartItem?.map((cart, id) => {
+        <p className="mt-5 pl-3 font-bold font-serif">
+          Cart
+          <span className="pl-48 font-sans">
+            {Object.keys(cartItem).length} Item
+          </span>
+        </p>
+
+        {Object.values(cartItem).map((ele, id) => {
           return (
             <div
               key={id}
               className="flex justify-between mr-24 ml-9 scroll-m-1"
             >
-              <h4 className="grid mt-8 ml-5 ">{cart?.card?.info?.name}</h4>
+              <h4 className="grid mt-8 ml-5 ">{ele?.name}</h4>
               <div className=" flex  border-2  w-24  h-11 mt-6 ml-5">
                 <button
-                  onClick={() => addFoodItem(cart)}
+                  onClick={() => addFoodItem(ele)}
                   className=" m-4 text-xl mt-3 text-orange-500"
                 >
                   +
+                  <span>
+                    {cartItem?.[ele?.name]?.count > 0
+                      ? cartItem?.[ele?.name]?.count
+                      : 0}
+                  </span>
                 </button>
-                <span className="mt-4 text-orange-500">{cartItem.length}</span>
+                <span className="mt-4 text-orange-500"></span>
                 <button
-                  onClick={() => removeFoodItem(cart)}
+                  onClick={() => removeFoodItem(ele)}
                   className=" m-4 text-2xl font-bold mt-2 text-orange-500"
                 >
                   -
                 </button>
                 <hr></hr>
               </div>
-              <span className="ml-20 mt-10">
-                ₹ {cart?.card?.info?.price / 100}
-              </span>
+
+              {(ele?.price / 100) * cartItem?.[ele?.name]?.count}
             </div>
           );
         })}
@@ -93,16 +103,47 @@ const Cart = () => {
         </div>
         <div className="ml-[55px] mt-5 w-[340px] h-9 ">
           <p className=" font-bold text-2xl font-serif">Bill Details</p>
-          <p className="mt-3 p-2 text-lg font-serif"> Item Total</p>
+          <p className="mt-3 p-2 text-lg font-serif">
+            Item Total
+            <span className="pl-[150px]">
+              {Object.values(cartItem).reduce((previousValue, currentValue) => {
+                return (
+                  previousValue +
+                  (currentValue.price / 100) * currentValue.count
+                );
+              }, 0)}
+            </span>
+          </p>
+
           <hr></hr>
           <hr></hr>
           <hr></hr>
-          <p className="p-2 font-serif text-lg">Total Pay</p>
+
+          <p className="p-2 font-serif text-lg">
+            Total Pay
+            <span className="pl-40">
+              {Object.values(cartItem).reduce((previousValue, currentValue) => {
+                return (
+                  previousValue +
+                  (currentValue.price / 100) * currentValue.count
+                );
+              }, 0)}
+            </span>
+          </p>
         </div>
         <div className="w-[340px] h-10 border-2 mt-28 ml-[55px] text-center bg-black text-white font-serif text-lg p-1">
           <button>Place Your Order</button>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="empty-cart-container">
+      <img
+        src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0"
+        alt="empty-cart"
+        className="h-96"
+      />
+      <h3 className="font-bold text-xl">You have nothing in your cart.</h3>
     </div>
   );
 };

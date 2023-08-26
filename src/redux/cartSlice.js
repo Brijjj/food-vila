@@ -3,15 +3,30 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlise = createSlice({
   name: "cart",
   initialState: {
-    items: [],
+    cartItems: {},
   },
   reducers: {
     addItem: (state, action) => {
-      state.items.push(action.payload);
+      if (state.cartItems[action?.payload?.name]) {
+        state.cartItems[action?.payload?.name]["count"] = ++state.cartItems[
+          action?.payload?.name
+        ]["count"];
+      } else {
+        state.cartItems[action?.payload?.name] = action?.payload;
+        state.cartItems[action?.payload?.name]["count"] = 1;
+      }
     },
-    removeItem: (state) => {
-      state.items.pop();
+
+    removeItem: (state, action) => {
+      if (state.cartItems[action?.payload?.name]["count"] > 1) {
+        state.cartItems[action?.payload?.name]["count"] = --state.cartItems[
+          action?.payload?.name
+        ]["count"];
+      } else {
+        delete state.cartItems[action?.payload?.name];
+      }
     },
+
     clearCart: (state) => {
       state.items = [];
     },

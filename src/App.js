@@ -1,9 +1,9 @@
 import React from "react";
-import AppLayout from "./Food-vila/appLayout";
+import AppLayout from "./Component/AppLayout";
 export const App = () => {
   return (
     <div>
-        <AppLayout />
+      <AppLayout />
     </div>
   );
 };

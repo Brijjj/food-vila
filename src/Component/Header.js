@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Header = () => {
-  const [toggel, setToogel] = useState(false);
-  const cartItem = useSelector((store) => store.cart.items);
+  const cartItem = useSelector((store) => store.cart.cartItems);
   return (
     <div className="flex bg-violet-100 justify-between">
       <img
@@ -19,26 +18,12 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="m-2 p-2  hover:text-red-500">
-            <Link to="/cart">
-              Cart {cartItem.length > 0 ? cartItem.length : null}
-            </Link>
+            <Link to="/cart">Cart {Object.keys(cartItem).length}</Link>
           </li>
         </ul>
-        <div></div>
       </div>
 
-      {toggel ? (
-        <button
-          className=" hover:text-red-500"
-          onClick={() => setToogel(false)}
-        >
-          Login
-        </button>
-      ) : (
-        <button className=" hover:text-red-500" onClick={() => setToogel(true)}>
-          Logout
-        </button>
-      )}
+    
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { img_url } from "./constant";
+import { img_url } from "../utils/Constant";
 
 const ResturentCard = ({
   name,
@@ -7,7 +7,7 @@ const ResturentCard = ({
   cuisines,
   avgRating,
   costForTwo,
-  minDeliveryTime,
+  sla,
 }) => {
   return (
     <div className="w-64 h-92 m-16 p-3 shadow-xl bg-white hover:scale-[0.90]">
@@ -29,10 +29,8 @@ const ResturentCard = ({
               {avgRating}
             </span>
           )}
-          <span className="text-xs  ml-9">{minDeliveryTime} MINS</span>
-          <span className="text-xs  text-right ml-6">
-            ₹{costForTwo / 100} FOR TWO
-          </span>
+          <span className="text-xs  ml-9">{sla?.slaString}</span>
+          <span className="text-xs  text-right ml-6">{costForTwo}</span>
         </div>
       </div>
     </div>

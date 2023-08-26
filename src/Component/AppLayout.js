@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "./header";
+import Header from "./Header";
 import Body from "./Body";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import Cart from "./cart";
-import Error from "./error";
-import RestaurentMenu from "./resturentMenu";
-import Store from "../redux/store";
+import Cart from "../page/Cart";
+import Error from "../page/Error";
+import RestaurentMenu from "./ResturentMenu";
+import Store from "../redux/Store";
 import { Provider } from "react-redux";
 
 const AppLayout = () => {
@@ -15,7 +15,7 @@ const AppLayout = () => {
       <Provider store={Store}>
         <Header />
         <Outlet />
-        </Provider>
+      </Provider>
     </div>
   );
 };
